@@ -1,5 +1,9 @@
 # Typing Trainer
-Typing Trainer is a Python project for practice your typing speed.
+Typing Trainer is a Python project for training your typing speed.
+Written in python.
+It works simply, it parses a random page from Wikipedia and then you need to type text into an invisible input box.
+The input box automatically checks the correction of the entered data.
+While you are typing - the program takes measurements, and when you press the Stop button, it prints the results and the input field stops working until you press the Start button.
 
 ## Installation
 First you clone it to your directory.
