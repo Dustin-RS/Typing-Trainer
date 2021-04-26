@@ -39,8 +39,6 @@ class WikiParser:
         random = wikipedia.random(1)
         try:
             result = wikipedia.page(random)
-        except wikipedia.exceptions.DisambiguationError as e:
-            result = self.random_page()
-        except wikipedia.exceptions.PageError as e:
+        except (wikipedia.exceptions.DisambiguationError, wikipedia.exceptions.PageError) as e:
             result = self.random_page()
         return result

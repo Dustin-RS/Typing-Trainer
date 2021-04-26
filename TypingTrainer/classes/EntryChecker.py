@@ -1,4 +1,5 @@
 from classes.WikiParser import WikiParser
+MIN_TEXT_LENGTH = 10000
 
 
 class EntryChecker:
@@ -24,7 +25,7 @@ class EntryChecker:
         """
         Parsing wiki pages until we find the article with more than 10000 characters
         """
-        while len(self.wiki_txt) < 10000:
+        while len(self.wiki_txt) < MIN_TEXT_LENGTH:
             self.wiki = WikiParser().info_block
             self.wiki_txt += ''.join(''.join(self.wiki).split('\n'))
 

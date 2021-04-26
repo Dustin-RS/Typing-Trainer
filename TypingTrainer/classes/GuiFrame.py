@@ -1,6 +1,10 @@
 import tkinter as tk
 import time
 from classes.EntryChecker import EntryChecker
+MAX_PERCENTAGE = 100
+MAX_RATE = 1
+AVG_AMOUNT_CHAR_IN_WORD = 5
+SEC_IN_MINUTES_IN_HOUR = 60
 
 
 class GuiFrame:
@@ -30,9 +34,9 @@ class GuiFrame:
 
         self.gui.wiki_label.config(fg="black")
         self.gui.user_inp.config(state="normal")
-        self.start_button.config(state='disable')
-        self.stop_button.config(state='active')
-        self.result_label.config(text='')
+        self.start_button.config(state="disable")
+        self.stop_button.config(state="active")
+        self.result_label.config(text="")
 
     def visual_chg_stop(self):
         """
@@ -43,9 +47,9 @@ class GuiFrame:
         self.stop_button.grid_forget()  # Make a stop button invisible.
 
         self.gui.user_inp.config(state="disable")
-        self.start_button.config(state='active')
+        self.start_button.config(state="active")
         self.gui.wiki_label.config(fg="gray")
-        self.stop_button.config(state='disable')
+        self.stop_button.config(state="disable")
         self.result_label.config(text=''.join(self.results))
 
     def measure_start(self):
@@ -66,11 +70,11 @@ class GuiFrame:
             back_time = time.time() - self.start_time
             self.end_time += back_time
         try:
-            minutes = int(self.end_time / 60)
-            seconds = self.end_time % 60
+            minutes = int(self.end_time / SEC_IN_MINUTES_IN_HOUR)
+            seconds = self.end_time % SEC_IN_MINUTES_IN_HOUR
             cps = self.gui.sum_cnt / self.end_time
-            wpm = cps * 60 / 5
-            acc = 100 * (1-self.gui.err_cnt/self.gui.sum_cnt)
+            wpm = cps * SEC_IN_MINUTES_IN_HOUR / AVG_AMOUNT_CHAR_IN_WORD
+            acc = MAX_PERCENTAGE * (MAX_RATE-self.gui.err_cnt/self.gui.sum_cnt)
         except ZeroDivisionError:
             cps = 0
             wpm = 0
