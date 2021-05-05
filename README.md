@@ -16,7 +16,6 @@ Then you are entry to the Typing-Trainer/TypingTrainer directory
 
 ```bash
 cd Typing-Trainer
-cd TypingTrainer
 ```
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install wikipedia, 
