@@ -25,11 +25,11 @@ class WikiParser:
         respond = requests.get(self.URL)  # Get html code.
         soup = BeautifulSoup(respond.text, features="html.parser")  # Make it a text.
 
-        info_wiki = soup.find_all('p')  # Only get a paragraphes block.
+        info_wiki = soup.find_all('p')  # Only get a paragraphs block.
         for item in info_wiki[3:]:
             encoded_string = item.text.encode("ascii", "ignore")  # Remove all non ascii characters.
             decode_string = encoded_string.decode()
-            decode_string = "".join(re.split("\(|\)|\[|\]", decode_string)[::2])  # Remove unnecessary brackets.
+            decode_string = "".join(re.split(r"\(|\)|\[|\]", decode_string)[::2])  # Remove unnecessary brackets.
             self.info_block.append(decode_string)  # Put all text into info_block
 
     def random_page(self):
@@ -39,6 +39,6 @@ class WikiParser:
         random = wikipedia.random(1)
         try:
             result = wikipedia.page(random)
-        except (wikipedia.exceptions.DisambiguationError, wikipedia.exceptions.PageError) as e:
+        except (wikipedia.exceptions.DisambiguationError, wikipedia.exceptions.PageError):
             result = self.random_page()
         return result

@@ -58,4 +58,3 @@ class EntryChecker:
             self.err_cnt += 1
         self.sum_cnt += 1  # measure amount of total input character by user.
         self.user_inp.delete(0, 'end')  # clear the entry box.
-
